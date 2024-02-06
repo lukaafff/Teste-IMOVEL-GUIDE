@@ -25,56 +25,23 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    @foreach ($corretor as $corretores)
                     <tr>
-                        <td>1</td>
-                        <td>Luiza</td>
-                        <td>12345678912</td>
-                        <td>12345678</td>
+                        <td>{{$corretores->id}}</td>
+                        <td>{{$corretores->nome}}</td>
+                        <td>{{$corretores->cpf}}</td>
+                        <td>{{$corretores->creci}}</td>
                         <td>
                             <button class="btn-editar">Editar</button>
                             <button class="btn-excluir">Excluir</button>
                         </td>
                     </tr>
+                    @endforeach
+
                 </tbody>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Luiza</td>
-                        <td>12345678912</td>
-                        <td>12345678</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Luiza</td>
-                        <td>12345678912</td>
-                        <td>12345678</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Luiza</td>
-                        <td>12345678912</td>
-                        <td>12345678</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
             </table>
         </div>
     </section>

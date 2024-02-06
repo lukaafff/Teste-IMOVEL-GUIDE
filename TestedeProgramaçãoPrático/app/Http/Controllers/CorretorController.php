@@ -3,15 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ModelCorretor;
 
 class CorretorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    private $objCorretor;
+
+     public function __construct()
+     {
+        $this->objCorretor=new ModelCorretor();
+     }
+
     public function index()
     {
-        return view('index');
+        $corretor=ModelCorretor::all();
+        return view('index', compact('corretor'));
     }
 
     /**
