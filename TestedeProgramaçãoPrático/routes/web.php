@@ -5,4 +5,4 @@ use App\Http\Controllers\CorretorController;
 
 Route::resource('/corretores', CorretorController::class)->except(['edit']);
 Route::get('/corretores/{corretor}/edit', [CorretorController::class, 'edit'])->name('corretores.edit');
-
+Route::delete('/corretores/{corretor}', [CorretorController::class, 'destroy'])->name('corretores.destroy');

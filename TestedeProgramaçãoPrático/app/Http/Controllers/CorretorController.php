@@ -100,6 +100,14 @@ class CorretorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $corretor = ModelCorretor::find($id);
+
+        if ($corretor) {
+            $corretor->delete();
+            return redirect()->route('corretores.index')->with('success', 'Corretor excluído com sucesso!');
+        } else {
+            return redirect()->route('corretores.index')->with('error', 'Corretor não encontrado.');
+        }
     }
+
 }

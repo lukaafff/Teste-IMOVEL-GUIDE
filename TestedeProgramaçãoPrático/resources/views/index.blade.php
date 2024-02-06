@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        <form name="formCadastro" id="formCadastro" method="post" action="{{url('corretores')}}">
+        <form name="formCadastro" id="formCadastro" method="post" action="{{ url('corretores') }}">
             @csrf
             <div class="form-container">
                 <div class="input-group">
@@ -32,43 +32,47 @@
                     <input type="number" id="creci" name="creci" placeholder="Digite seu Creci" required>
                 </div>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu Nome" required>
-                <button type="submit" value="Cadastra" class="mt-4">Enviar</button>
+                <button type="submit" value="Cadastrar" class="mt-4">Cadastrar</button>
             </div>
         </form>
 
-        <div class="container-tabela">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOME</th>
-                        <th>CPF</th>
-                        <th>CRECI</th>
-                        <th>AÇÕES</th>
-                    </tr>
-                </thead>
-                <tbody>
+        @if ($corretor->isEmpty())
+            <p>Nenhum corretor cadastrado no momento.</p>
+        @else
+            <div class="container-tabela">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>CPF</th>
+                            <th>CRECI</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($corretor as $corretores)
+                            <tr>
+                                <td>{{ $corretores->id }}</td>
+                                <td>{{ $corretores->nome }}</td>
+                                <td>{{ $corretores->cpf }}</td>
+                                <td>{{ $corretores->creci }}</td>
+                                <td>
+                                    <a href="{{ url("corretores/$corretores->id/edit") }}">
+                                        <button class="btn btn-warning">Editar</button>
+                                    </a>
 
-                    @foreach ($corretor as $corretores)
-                    <tr>
-                        <td>{{$corretores->id}}</td>
-                        <td>{{$corretores->nome}}</td>
-                        <td>{{$corretores->cpf}}</td>
-                        <td>{{$corretores->creci}}</td>
-                        <td>
-                            <a href="{{ url("corretores/$corretores->id/edit") }}">
-                                <button class="btn-editar">Editar</button>
-                            </a>
-
-                            <a href="{{url("corretores/$corretores->id")}}" class="js-del">
-                                <button class="btn-excluir">Deletar</button>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
+                                    <form action="{{ route('corretores.destroy', $corretores->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class= "btn btn-danger">Deletar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </section>
 @endsection
