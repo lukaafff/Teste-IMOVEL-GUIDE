@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CorretorRequest;
 use Illuminate\Http\Request;
 use App\Models\ModelCorretor;
 
@@ -29,15 +30,36 @@ class CorretorController extends Controller
      */
     public function create()
     {
-        //
+        return view('corretor');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CorretorRequest $request)
     {
-        //
+        $cpfExistente = $this->objCorretor->where('cpf', $request->cpf)->exists();
+        $creciExistente = $this->objCorretor->where('creci', $request->creci)->exists();
+
+        if ($cpfExistente) {
+            return redirect('corretores')->with('error', 'CPF já cadastrado. Não é possível realizar o cadastro.');
+        }
+
+        if ($creciExistente) {
+            return redirect('corretores')->with('error', 'CRECI já cadastrado. Não é possível realizar o cadastro.');
+        }
+
+        $cadastro = $this->objCorretor->create([
+            'cpf' => $request->cpf,
+            'creci' => $request->creci,
+            'nome' => $request->nome
+        ]);
+
+        if ($cadastro) {
+            return redirect('corretores')->with('success', 'Cadastro realizado com sucesso!');
+        } else {
+            return redirect('corretores')->with('error', 'Ocorreu um erro ao cadastrar o corretor.');
+        }
     }
 
     /**
@@ -45,7 +67,7 @@ class CorretorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -53,13 +75,13 @@ class CorretorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $corretor=$this->objCorretor->find($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CorretorRequest $request, string $id)
     {
         //
     }

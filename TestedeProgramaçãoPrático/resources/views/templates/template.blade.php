@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cadastro de Corretores</title>
     <link rel="stylesheet" href="{{url('assets/css/index.css')}}">
+    <link rel="stylesheet" href="{{url('assets/bootstrap-5.3.2-dist/css/bootstrap.min.css')}}">
 </head>
 <body>
     @yield('content')

@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('corretor', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id', true);
             $table->string('nome', 20)->nullable(false);
             $table->string('cpf', 11)->unique()->nullable(false);
             $table->string('creci', 8)->nullable(false);
+            $table->timestamps();
         });
     }
 

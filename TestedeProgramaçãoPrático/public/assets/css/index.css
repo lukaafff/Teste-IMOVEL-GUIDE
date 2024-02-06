@@ -22,6 +22,7 @@ h1 {
 .form-container input,
 .input-group input  {
     padding: 12px;
+    font-size: 14px;
 }
 
 .input-group {
