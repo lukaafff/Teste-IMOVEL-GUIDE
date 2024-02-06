@@ -58,9 +58,10 @@
                                 <td>{{ $corretores->cpf }}</td>
                                 <td>{{ $corretores->creci }}</td>
                                 <td>
-                                    <a href="{{ url("corretores/$corretores->id/edit") }}">
+                                    <a href="{{ route('corretores.edit', $corretores->id) }}">
                                         <button class="btn btn-warning">Editar</button>
                                     </a>
+
 
                                     <form action="{{ route('corretores.destroy', $corretores->id) }}" method="POST" class="d-inline">
                                         @csrf
