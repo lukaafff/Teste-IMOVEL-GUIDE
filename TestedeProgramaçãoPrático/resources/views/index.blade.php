@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container">
-        <h1>Cadastro de Corretor</h1>
+        <h1>Cadastro de Corretores</h1>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -56,10 +56,13 @@
                         <td>{{$corretores->cpf}}</td>
                         <td>{{$corretores->creci}}</td>
                         <td>
-                            <a href="{{url("corretor/$corretores->id/edit")}}">
+                            <a href="{{ url("corretores/$corretores->id/edit") }}">
                                 <button class="btn-editar">Editar</button>
                             </a>
-                            <button class="btn-excluir">Excluir</button>
+
+                            <a href="{{url("corretores/$corretores->id")}}" class="js-del">
+                                <button class="btn-excluir">Deletar</button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

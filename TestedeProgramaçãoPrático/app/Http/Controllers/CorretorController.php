@@ -67,24 +67,33 @@ class CorretorController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $corretor=$this->objCorretor->find($id);
+        $corretor = ModelCorretor::find($id);
+        return view('edit-corretor', compact('corretor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CorretorRequest $request, string $id)
+    public function update(CorretorRequest $request, $id)
     {
-        //
+        $corretor = ModelCorretor::find($id);
+        $corretor->cpf = $request->cpf;
+        $corretor->creci = $request->creci;
+        $corretor->nome = $request->nome;
+        $corretor->save();
+
+        $response = redirect()->route('corretores.index')->with('success', 'Corretor atualizado com sucesso!');
+        return $response;
     }
+
 
     /**
      * Remove the specified resource from storage.
